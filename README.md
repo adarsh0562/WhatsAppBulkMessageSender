@@ -5,11 +5,15 @@ Automate sending WhatsApp messages (including images 📸) to multiple contacts 
 
 ---
 
+
 ## 🚀 Project Overview
 
 This automation framework streamlines the process of sending WhatsApp messages via **WhatsApp Web** using data from Excel sheets, including images. It ensures reliability, traceability, and a visually rich test execution report.
 
 ---
+
+## 📊 View Latest Report
+[Report](https://adarsh0562.github.io/WhatsAppBulkMessageSender/)  
 
 ## 🛠️ Tech Stack & Tools
 
