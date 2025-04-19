@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Bulk Message Sender</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #0b1c39;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+    .btn-report {
+      background-color: #20b2aa;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn-report:hover {
+      background-color: #18a79f;
+      transform: scale(1.05);
+    }
+    pre, code {
+      background-color: #09152b;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      display: block;
+      color: #eee;
+    }
+    a {
+      color: #20b2aa;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      color: #ffd60a;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>WhatsApp Bulk Message Sender</h1>
+      <p class="lead">Automation Testing | Cucumber | TestNG | Selenium | Java | Extent Report</p>
+    </div>
+
+    <button class="btn-report" onclick="goToReport()">📊 View Latest Report</button>
+
+    <div id="readmeContent">
+      <!-- README content below -->
+      <h3>📌 Features</h3>
+      <ul>
+        <li>Automated WhatsApp message sending using Selenium</li>
+        <li>Data-driven from Excel for contacts/messages</li>
+        <li>Reusable TestNG framework with Page Object Model</li>
+        <li>Beautiful Extent Report & Allure integration</li>
+      </ul>
+
+      <h3>🚀 Technologies Used</h3>
+      <ul>
+        <li>Java</li>
+        <li>Selenium WebDriver</li>
+        <li>TestNG + Cucumber</li>
+        <li>Extent Reports</li>
+        <li>Apache POI (for Excel)</li>
+        <li>Allure</li>
+        <li>Git & Jenkins CI</li>
+      </ul>
+
+      <h3>📁 Folder Structure</h3>
+      <pre><code>
+├── src
+│   └── test
+│       ├── java
+│       │   ├── base
+│       │   ├── pages
+│       │   ├── tests
+│       │   └── utils
+│       └── resources
+├── testng.xml
+├── extent-config.xml
+├── README.md
+      </code></pre>
+
+      <h3>⚙️ How to Use</h3>
+      <ol>
+        <li>Clone the repo</li>
+        <li>Run `mvn clean test`</li>
+        <li>View the generated report</li>
+      </ol>
+
+      <h3>📤 Jenkins Integration</h3>
+      <p>Jenkins is configured to run this project automatically and push the updated <code>report/testng/index.html</code> to the GitHub repo. You can always view the latest report by clicking the button above.</p>
+
+      <h3>🔗 GitHub Repository</h3>
+      <p><a href="https://github.com/adarsh0562/WhatsAppBulkMessageSender" target="_blank">github.com/adarsh0562/WhatsAppBulkMessageSender</a></p>
+    </div>
+  </div>
+
+  <script>
+    function goToReport() {
+      window.location.href = 'report/testng/index.html';
+    }
+  </script>
+
+</body>
+</html>
