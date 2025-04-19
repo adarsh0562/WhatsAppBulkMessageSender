@@ -42,7 +42,7 @@ public class ExtentManager {
 
         // Inject custom logo (replaces default Extent logo)
         reporter.config().setJs(
-                "document.querySelector('.logo').innerHTML = \"<img src='logo.png' style='height:50px;width:70px'>\";"
+                "document.querySelector('.logo').innerHTML = \"<img src='logo.png' style='height:53px;width:70px;padding: 0;'>\";"
         );
 
         // Create ExtentReports instance and attach reporter
