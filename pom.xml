@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -58,27 +59,25 @@
       <artifactId>cucumber-java</artifactId>
       <version>7.21.1</version>
     </dependency>
-
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-testng</artifactId>
       <version>7.21.1</version>
     </dependency>
 
-    <!-- Apache POI (Excel Handling) -->
+    <!-- Apache POI for Excel -->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
       <version>5.4.0</version>
     </dependency>
-
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>5.4.0</version>
     </dependency>
 
-    <!-- Logging -->
+    <!-- SLF4J Logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -91,7 +90,6 @@
       <artifactId>allure-java-commons</artifactId>
       <version>${allure.version}</version>
     </dependency>
-
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-cucumber7-jvm</artifactId>
@@ -103,62 +101,49 @@
         </exclusion>
       </exclusions>
     </dependency>
-
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-testng</artifactId>
       <version>${allure.version}</version>
     </dependency>
 
-    <!-- Resolve dependency conflict -->
+    <!-- Fix for messages conflict -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>messages</artifactId>
       <version>27.2.0</version>
     </dependency>
+
+    <!-- ExtentReports -->
     <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
       <version>5.1.2</version>
     </dependency>
 
+    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Maven Compiler Plugin -->
+      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <source>11</source>
-          <target>11</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
 
-      <!-- Allure Maven Plugin (Fixed) -->
-      <plugin>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-maven</artifactId>
-        <version>2.10.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>aggregate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Surefire Plugin for Running Tests -->
+      <!-- Surefire Plugin for TestNG + Allure -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -170,21 +155,22 @@
         </configuration>
       </plugin>
 
-      <!-- Allure Serve Report -->
+      <!-- Allure Report Plugin -->
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
         <version>2.10.0</version>
         <executions>
           <execution>
+            <id>allure-report</id>
+            <phase>verify</phase>
             <goals>
+              <goal>aggregate</goal>
               <goal>report</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
-
-
     </plugins>
   </build>
 

@@ -4,8 +4,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,27 +21,31 @@ public class ExtentManager {
 
     public static void setupReport() {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String reportPath = System.getProperty("user.dir")+"//report//testng//index.html";
+        String reportPath = System.getProperty("user.dir") + "/report/testng/index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(reportPath);
 
+        // Basic report config
         reporter.config().setDocumentTitle("WhatsApp Automation Report");
         reporter.config().setReportName("Adarsh Raj - WhatsApp Automation Testing");
         reporter.config().setTheme(Theme.DARK);
         reporter.config().setTimelineEnabled(true);
 
-        // Use relative path for logo stored in the report/assets folder
-        String logoRelativePath = System.getProperty("user.dir")+"//report//testng//logo.png";
+        // Copy custom logo to report folder
+        try {
+            Path source = Paths.get("src/test/resources/logo.png"); // Make sure logo exists here
+            Path destination = Paths.get(System.getProperty("user.dir") + "/report/testng/logo.png");
+            Files.createDirectories(destination.getParent());
+            Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("Failed to copy logo: " + e.getMessage());
+        }
 
-        // Improved logo and title layout with left-aligned logo and clean styling
-        String titleWithLogo = "<div style='display: flex; align-items: center;'>" +
-                            "<img src='" + logoRelativePath + "' style='width: 100px; height: 100px; margin-right: 15px;'/>" +
-                            "<span style='font-size: 22px; font-weight: bold; color: white;'>Adarsh Raj - WhatsApp Automation Report</span>" +
-                            "</div>";
+        // Inject custom logo (replaces default Extent logo)
+        reporter.config().setJs(
+                "document.querySelector('.logo').innerHTML = \"<img src='logo.png' style='height:50px;width:70px'>\";"
+        );
 
-        
-        //String titleWithLogo = "<img src='" + logoRelativePath + "' style='max-width: 150px; height: 150px;'/> Adarsh Raj - WhatsApp Automation Report";
-        reporter.config().setReportName(titleWithLogo);
-
+        // Create ExtentReports instance and attach reporter
         extentReports = new ExtentReports();
         extentReports.attachReporter(reporter);
         extentReports.setSystemInfo("Tester", "Adarsh Raj");
